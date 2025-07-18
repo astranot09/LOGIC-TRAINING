@@ -29,6 +29,11 @@ public class PlayerMovement : MonoBehaviour
     public float maxDash = 2;
     public float DashCount = 0;
 
+    //[Header("Health")]
+    //public float health = 0;
+    //public float maxHealth = 10;
+
+
     private Rigidbody2D rb;
     private bool isGrounded;
     private Coroutine dashRecoveryRoutine;
@@ -37,17 +42,13 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         normalGravity = rb.gravityScale;
+        //health = maxHealth;
     }
     private void Update()
     {
         direction = Input.GetAxis("Horizontal");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
 
-        if (isGrounded)
-        {
-            Debug.Log("nyentuh tanah");
-            JumpCount = 0;
-        }
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Debug.Log("loncat");

@@ -5,18 +5,20 @@ using UnityEngine.UIElements;
 
 public class Fireball : MonoBehaviour
 {
-    public float damage;
+    public float damage = 2;
     public float speed;
     public float direction;
     public GameObject effectFireBall;
 
     [SerializeField] private List<GameObject> effectFireballObjPooling;
+    private TrailRenderer trail;
 
     private Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        trail = GetComponent<TrailRenderer>();
     }
     private void Update()
     {
@@ -25,13 +27,18 @@ public class Fireball : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy"))
+        Idamagetable damagetable = collision.GetComponent<Idamagetable>();
+        if (damagetable == null || collision.CompareTag("Player")) return;
         {
             if(effectFireBall != null)
             {
                 SpawnEffect();
             }
+            //EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
+            damagetable.TakeDamage(damage);
             gameObject.SetActive(false);
+            trail.Clear();
+            Debug.Log(collision.name);
         }
     }
 
