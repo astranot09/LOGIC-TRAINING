@@ -27,20 +27,44 @@ public class Fireball : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Idamagetable damagetable = collision.GetComponent<Idamagetable>();
-        if (damagetable == null || collision.CompareTag("Player")) return;
+        Idamageable damageable = collision.GetComponent<Idamageable>();
+        IDistructable distructable = collision.GetComponent<IDistructable>();
+        if (collision.CompareTag("Player")) return;
+
+        if (collision.CompareTag("Wall"))
         {
-            if(effectFireBall != null)
+            if (effectFireBall != null)
             {
                 SpawnEffect();
             }
-            //EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
-            damagetable.TakeDamage(damage);
             gameObject.SetActive(false);
             trail.Clear();
             Debug.Log(collision.name);
         }
-    }
+
+        if (distructable != null)
+        {
+                if (effectFireBall != null)
+                {
+                SpawnEffect();
+                }
+            distructable.TakeDamage();
+        }
+        
+        if(damageable != null )
+            {
+                if (effectFireBall != null)
+                {
+                    SpawnEffect();
+                }
+                damageable.TakeDamage(damage);
+                gameObject.SetActive(false);
+                trail.Clear();
+                Debug.Log(collision.name);
+            }
+
+        }
+    
 
     public void SpawnEffect()
     {

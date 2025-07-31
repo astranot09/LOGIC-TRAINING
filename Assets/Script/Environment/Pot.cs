@@ -1,0 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Pot : MonoBehaviour , IDistructable
+{
+    public void TakeDamage()
+    {
+        gameObject.SetActive(false);
+    }
+}

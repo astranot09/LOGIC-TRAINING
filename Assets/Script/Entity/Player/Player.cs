@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : Entity, Idamagetable
+public class Player : Entity, Idamageable
 {
     [Header("Stats")]
     public float maxHealth;
@@ -26,7 +26,15 @@ public class Player : Entity, Idamagetable
     }
     public void Update()
     {
-        healthbar.fillAmount = health/maxHealth;
+        if(health/maxHealth == 1)
+        {
+            healthbar.gameObject.SetActive(false);
+        }
+        else
+        {
+            healthbar.gameObject.SetActive(true);
+        }
+            healthbar.fillAmount = health / maxHealth;
     }
 
 }

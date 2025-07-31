@@ -29,11 +29,6 @@ public class PlayerMovement : MonoBehaviour
     public float maxDash = 2;
     public float DashCount = 0;
 
-    //[Header("Health")]
-    //public float health = 0;
-    //public float maxHealth = 10;
-
-
     private Rigidbody2D rb;
     private bool isGrounded;
     private Coroutine dashRecoveryRoutine;

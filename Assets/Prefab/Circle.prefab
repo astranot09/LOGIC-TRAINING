@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  speed: 1000
+  speed: 2000
   direction: 0
   effectFireBall: {fileID: 617868714367383736, guid: aae4dadc8ecb9fd4aa1e2e4ff62d1b21, type: 3}
   effectFireballObjPooling: []

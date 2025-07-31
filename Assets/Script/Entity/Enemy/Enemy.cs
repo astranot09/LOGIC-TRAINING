@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : Entity, Idamagetable
+public class Enemy : Entity, Idamageable
 {
     [Header("Stats")]
     public float maxHealth;
@@ -11,6 +11,7 @@ public class Enemy : Entity, Idamagetable
     [Header("References")]
     public Image healthbar;
     public float health { get; set; }
+
     void Start()
     {
         health = maxHealth;
@@ -25,6 +26,17 @@ public class Enemy : Entity, Idamagetable
     }
     public void Update()
     {
+        
+        if (health / maxHealth == 1)
+        {
+            healthbar.gameObject.SetActive(false);
+        }
+        else
+        {
+            healthbar.gameObject.SetActive(true);
+        }
         healthbar.fillAmount = health / maxHealth;
     }
+
+    
 }
